@@ -28,6 +28,28 @@ jobs:
         run: pnpm install
       - name: Build Mod
         run: pnpm build
+      - uses: actions/upload-artifact@master
+        with:
+          name: my-artifact
+          path: dist
+          retention-days: 1
+  release:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set node
+        uses: actions/setup-node@v4
+        with:
+          registry-url: https://registry.npmjs.org/
+          node-version: lts/*
+      - uses: actions/download-artifact@master
+        with:
+          name: my-artifact
+          path: dist
       - name: Publish Change Log
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
