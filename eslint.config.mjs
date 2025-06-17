@@ -8,6 +8,7 @@ export default antfu({
   ignores: ["./utils/static/*.js"],
   jsonc: true,
   markdown: true,
+  yaml: true,
   formatters: {
     markdown: true,
   },
