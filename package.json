@@ -1,7 +1,7 @@
 {
-  "name": "DoLModRspackExampleTS",
+  "name": "ChineseNameMod",
   "type": "commonjs",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development rspack serve",
@@ -29,6 +29,7 @@
     "adm-zip": "^0.5.16",
     "cross-env": "^7.0.3",
     "eslint": "^9.16.0",
+    "eslint-plugin-format": "^1.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   }

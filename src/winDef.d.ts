@@ -1,6 +1,27 @@
 export {};
-
+interface CoTChineseNameSetup {
+  chinese_names_cache: {
+    i18n_surnames_cn: string[];
+    i18n_names_cn: string[];
+    original_surnames: string[];
+    original_male: string[];
+    original_female: string[];
+  };
+  Names: {
+    "surnames_cn": string[];
+    "names_cn": string[];
+    "surnames": string[];
+    "male": string[];
+    "female": string[];
+    "transgender female": string[];
+    "transgender male": string[];
+    "nonbinary afab": string[];
+    "nonbinary amab": string[];
+  };
+}
 declare global {
+  const setup: CoTChineseNameSetup;
+
   interface Window {
     modUtils: ModUtils;
     modSC2DataManager: SC2DataManager;
@@ -8,6 +29,15 @@ declare global {
     modImgLoaderHooker: ImgLoaderHooker;
 
     jQuery: jQuery;
+
+    chinese_surnames: string[];
+    chinese_male_names: string[];
+    chinese_female_names: string[];
+
+    i18n_to_chinese_name: () => void;
+    chinese_name_to_i18n: () => void;
+    source_to_chinese_name: () => void;
+
   }
 
   let Macro: {
