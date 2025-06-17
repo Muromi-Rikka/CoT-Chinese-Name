@@ -6,7 +6,7 @@ if (!existsSync("./dist")) {
   mkdirSync("./dist");
 }
 
-const filename = `${name}-${version}.mod.zip`;
+const filename = `${name}-v${version}.mod.zip`;
 // eslint-disable-next-line node/prefer-global/process
 const modZip = createZip(process.cwd(), filename);
 

@@ -101,16 +101,16 @@ function devServer() {
               const modList = readdirSync("./game/mods/").filter(item => item.endsWith(".zip")).map(item => `/mods/${item}`);
               response.send(JSON.stringify([
                 ...modList,
-                `/${name}-${version}.mod.zip`,
+                `/${name}-v${version}.mod.zip`,
               ]));
             }
             else {
               response.send(JSON.stringify([
-                `/${name}-${version}.mod.zip`,
+                `/${name}-v${version}.mod.zip`,
               ]));
             }
           });
-          const filename = `${name}-${version}.mod.zip`;
+          const filename = `${name}-v${version}.mod.zip`;
 
           devServer.app?.get(`/${filename}`, (_: never, response: any) => {
             rspack(commonConfig(), (_err, _stats) => {
