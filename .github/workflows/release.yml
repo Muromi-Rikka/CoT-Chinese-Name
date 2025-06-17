@@ -8,7 +8,25 @@ on:
     tags:
       - "v*"
 jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set node
+        uses: actions/setup-node@v4
+        with:
+          registry-url: https://registry.npmjs.org/
+          node-version: lts/*
+
+      - run: npx changelogithub # or changelogithub@0.12 to ensure a stable result
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
   build:
+    needs:
+      - release
     runs-on: ubuntu-22.04
     strategy:
       matrix:
@@ -28,9 +46,6 @@ jobs:
         run: pnpm install
       - name: Build Mod
         run: pnpm build
-      - run: npx changelogithub # or changelogithub@0.12 to ensure a stable result
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Publish Mod Artifact
         uses: actions/upload-artifact@v4
         with:
